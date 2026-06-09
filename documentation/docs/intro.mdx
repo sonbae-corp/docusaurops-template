@@ -1,0 +1,102 @@
+---
+description: "Home page"
+slug: /
+sidebar_position: 1
+page_type: home
+---
+
+import Head from '@docusaurus/Head';
+
+<Head>
+  <meta name="docusaurOpsPageType" property="docusaurOpsPageType" content="site_home" />
+</Head>
+
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+
+export const Value = ({name}) => {
+  const {siteConfig} = useDocusaurusContext();
+  const meta = Object.fromEntries(
+    (siteConfig.themeConfig?.metadata || []).map(m => [m.name, m.content])
+  );
+  const map = { title: siteConfig.title, tagline: siteConfig.tagline, ...meta };
+  return <>{map[name] || ''}</>;
+};
+
+export const TechBadges = () => {
+  const {siteConfig} = useDocusaurusContext();
+  const techs = (siteConfig.themeConfig?.metadata || [])
+    .find(m => m.name === 'docusaurOpsProjectTechnologies')?.content || '';
+  return (
+    <>
+      {techs.split(',').map((t, i) => t.trim()).filter(Boolean).map((t, i) => (
+        <span key={i}>{i > 0 && ' · '}<code>{t}</code></span>
+      ))}
+    </>
+  );
+};
+export const Link = ({name, label}) => {
+  const {siteConfig} = useDocusaurusContext();
+  const meta = Object.fromEntries(
+    (siteConfig.themeConfig?.metadata || []).map(m => [m.name, m.content])
+  );
+  const url = meta[name] || '#';
+  return <a href={url} target="_blank" rel="noopener noreferrer">{label || url}</a>;
+};
+
+# <Value name="title" />
+
+> <Value name="docusaurOpsProjectDescription" />
+
+---
+
+## Project Information
+
+| | |
+|---|---|
+| **Repository** | <Link name="docusaurOpsProjectRepository" /> |
+| **Architecture Document** | [&lt;Architecture file link&gt;](#) |
+| **Environment (STG)** | [&lt;Staging URL&gt;](#) |
+| **Environment (PRD)** | [&lt;Production URL&gt;](#) |
+
+---
+
+## Objective
+
+Describe the project objective here. What is the expected outcome? What are the key deliverables and success criteria?
+
+- **Goal 1**: &lt;Describe goal&gt;
+- **Goal 2**: &lt;Describe goal&gt;
+- **Goal 3**: &lt;Describe goal&gt;
+
+---
+
+## Project Team
+
+### Leadership
+
+| Role | Name |
+|---|---|
+| **Product Owner** | &lt;Name&gt; |
+| **Project Manager** | &lt;Name&gt; |
+
+### Technical
+
+| Role | Name |
+|---|---|
+| **Solution Architect** | &lt;Name&gt; |
+| **Lead Developer** | &lt;Name&gt; |
+| **Developer(s)** | &lt;Name(s)&gt; |
+| **QA / Tester** | &lt;Name&gt; |
+| **DevOps Engineer** | &lt;Name&gt; |
+
+---
+
+## Technologies
+
+<TechBadges />
+
+---
+
+:::info[Getting Started]
+This documentation site is powered by the **DocusaurOps platform**. Replace the placeholder values above with your actual project information. Refer to the sidebar for additional documentation pages.
+:::
