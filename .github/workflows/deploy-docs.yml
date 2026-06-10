@@ -43,5 +43,5 @@ jobs:
             app-path: ${{ inputs.app-path || '[[ENV_BASE_URL]]' }}
             action: ${{ inputs.action || 'deploy' }}
             enable-auth: ${{ inputs.enable-auth || [[ENV_ENABLE_AUTH]] }}
-            documentation-path:  ${{ 'documentation' || '[[ENV_DOC_PATH]]' }} 
+            documentation-path:  ${{ '[[ENV_DOC_PATH]]' }} 
         secrets: inherit
